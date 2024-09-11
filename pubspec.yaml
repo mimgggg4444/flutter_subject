@@ -21,7 +21,9 @@ dependencies:
 
   # Assets
   cupertino_icons: ^1.0.6
-
+  google_fonts: ^6.2.1
+  
+  
   # Core
   easy_extension:
     git:
