@@ -159,6 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Text(
                   "link on",
                   style: GoogleFonts.poppins(color: Colors.white),
+                  
                 ),
               ),
             ),
@@ -208,11 +209,67 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ],
-            )
-            
+            ),
+
+            20.heightBox, // 여백 추가
+
+            // 구글, 애플, 페이스북 아이콘 추가 (이미지 네트워크 사용)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.network(
+                  'https://daelim-server.fleecy.dev/storage/v1/object/public/icons/google.png',
+                  height: 50,
+                ),
+                20.widthBox, // 아이콘 간격
+                Image.network(
+                  'https://daelim-server.fleecy.dev/storage/v1/object/public/icons/apple.png',
+                  height: 50,
+                ),
+                20.widthBox, // 아이콘 간격
+                Image.network(
+                  'https://daelim-server.fleecy.dev/storage/v1/object/public/icons/github.png',
+                  height: 50,
+                ),
+              ],
+            ),
+            40.heightBox, // 여백 추가
+
+// "Not a member? Register now" 추가
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Not a member? ",
+                  style: GoogleFonts.poppins(fontSize: 14),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    // Register now 클릭 시 동작할 코드
+                    print('Register now clicked!');
+                  },
+                  child: Text(
+                    "Register now",
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      color: Colors.blue, // 링크처럼 보이게 파란색으로 설정
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            30.heightBox, // 여백 추가
           ],
         ),
       )),
     );
   }
 }
+
+
+// singlechildscrollview
+// color theme of context texttheme bodymedium?.color
+
+// context.theme.textTheme.bodymidum
+// asdf
+
