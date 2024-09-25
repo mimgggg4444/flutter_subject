@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
             35.heightBox,
             ..._buildTextFields(),
 
-30.heightBox,
+            30.heightBox,
             // recovery password
             Row(
               mainAxisAlignment: MainAxisAlignment.end, // 버튼을 오른쪽으로 정렬
@@ -137,8 +137,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
 
-            //  
-            // Align( 
+            //
+            // Align(
             //   alignment: Alignment.centerRight,
             // ),
 
@@ -162,6 +162,54 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
+
+            40.heightBox,
+
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 1,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.transparent,
+                          Colors.grey.withOpacity(0.8), // 불투명도를 높임
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    'or continue with',
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    height: 1,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.grey.withOpacity(0.8), // 불투명도를 높임
+                          Colors.transparent,
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+            
           ],
         ),
       )),
