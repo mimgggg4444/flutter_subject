@@ -3,6 +3,7 @@ import 'package:easy_extension/easy_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_application_1/config.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -23,7 +24,20 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   // 로그인 api 호출
-  void _onFechedApi() async {
+  void _onFetchedApi() async {
+
+// 이메일과 비밀번호를 텍스트 컨트롤러에서 가져옴
+final email = _emailController.text; 
+final password = _pwController.text; 
+
+// 로그인 데이터 생성
+final loginData = {
+  'email': email, 
+  'password': password,
+};
+
+
+
     final String authUrl =
         "https://daelim-server.fleecy.dev/functions/v1/auth"; // authUrl 설정 필요
     final response = await http.post(
@@ -49,8 +63,48 @@ class _LoginScreenState extends State<LoginScreen> {
 // 패스워드 재설정
   void _onRecoveryPassword() {}
 
-// 로그인 버튼
-  void _onSignIn() {}
+  void _onSignIn() async {
+    // 이메일과 비밀번호를 텍스트 컨트롤러에서 가져옴
+    final email = _emailController.text; 
+    final password = _pwController.text; 
+
+    // 로그인 데이터 생성
+    final loginData = {
+      'email': email, 
+      'password': password,
+    };
+
+    // API 요청 URL을 configurer.dart에서 가져옴
+    try {
+      final response = await http.post(
+        Uri.parse(authUrl), // configurer.dart에서 가져온 authUrl 사용
+        body: jsonEncode(loginData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        // 성공적으로 로그인한 경우
+        print('Success: ${response.body}');
+        // 추가적인 처리 (예: 홈 화면으로 이동)
+      } else {
+        // 로그인 실패한 경우
+        print('Failed: ${response.statusCode}');
+        // SnackBar로 에러 메시지 표시
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('로그인 실패: ${response.statusCode}')),
+        );
+      }
+    } catch (error) {
+      print('Error: $error');
+      // SnackBar로 에러 메시지 표시
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('로그인 중 오류 발생: $error')),
+      );
+    }
+  }
+
 
   // 타이틀 텍스트 위젯
   List<Widget> _buildTitleText() => [
@@ -159,7 +213,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Text(
                   "link on",
                   style: GoogleFonts.poppins(color: Colors.white),
-                  
                 ),
               ),
             ),
@@ -213,26 +266,48 @@ class _LoginScreenState extends State<LoginScreen> {
 
             20.heightBox, // 여백 추가
 
-            // 구글, 애플, 페이스북 아이콘 추가 (이미지 네트워크 사용)
+// 구글, 애플, 깃허브 아이콘 추가 (이미지 네트워크 사용)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.network(
-                  'https://daelim-server.fleecy.dev/storage/v1/object/public/icons/google.png',
-                  height: 50,
+                GestureDetector(
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('준비중인 기능입니다!')),
+                    );
+                  },
+                  child: Image.network(
+                    'https://daelim-server.fleecy.dev/storage/v1/object/public/icons/google.png',
+                    height: 50,
+                  ),
                 ),
                 20.widthBox, // 아이콘 간격
-                Image.network(
-                  'https://daelim-server.fleecy.dev/storage/v1/object/public/icons/apple.png',
-                  height: 50,
+                GestureDetector(
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('준비중인 기능입니다!')),
+                    );
+                  },
+                  child: Image.network(
+                    'https://daelim-server.fleecy.dev/storage/v1/object/public/icons/apple.png',
+                    height: 50,
+                  ),
                 ),
                 20.widthBox, // 아이콘 간격
-                Image.network(
-                  'https://daelim-server.fleecy.dev/storage/v1/object/public/icons/github.png',
-                  height: 50,
+                GestureDetector(
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('준비중인 기능입니다!')),
+                    );
+                  },
+                  child: Image.network(
+                    'https://daelim-server.fleecy.dev/storage/v1/object/public/icons/github.png',
+                    height: 50,
+                  ),
                 ),
               ],
             ),
+
             40.heightBox, // 여백 추가
 
 // "Not a member? Register now" 추가
@@ -273,3 +348,5 @@ class _LoginScreenState extends State<LoginScreen> {
 // context.theme.textTheme.bodymidum
 // asdf
 
+
+// 버튼 눌렀을때 snackbar 나올 수 있게 하기 ontap 사용해서
