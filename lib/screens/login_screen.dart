@@ -119,23 +119,41 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             30.heightBox,
             ..._buildTitleText(),
-            20.heightBox,
+            35.heightBox,
             ..._buildTextFields(),
 
+30.heightBox,
             // recovery password
-            TextButton(
-              onPressed: _onRecoveryPassword,
-              child: Text(
-                "recovery password",
-                style: GoogleFonts.poppins(fontSize: 12),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end, // 버튼을 오른쪽으로 정렬
+              children: [
+                TextButton(
+                  onPressed: _onRecoveryPassword,
+                  child: Text(
+                    "recovery password",
+                    style: GoogleFonts.poppins(fontSize: 12),
+                  ),
+                ),
+              ],
             ),
+
+            //  
+            // Align( 
+            //   alignment: Alignment.centerRight,
+            // ),
+
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: _onSignIn,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xff31604a),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 20,
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
+
                   // textStyle: GoogleFonts.poppins(color: colors),
                 ),
                 child: Text(
